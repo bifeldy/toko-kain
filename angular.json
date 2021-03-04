@@ -33,14 +33,17 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "crypto-js"
+            ]
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/environments/client/environment.ts",
+                  "with": "src/environments/client/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -137,8 +140,8 @@
               "outputHashing": "media",
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/environments/client/environment.ts",
+                  "with": "src/environments/client/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
