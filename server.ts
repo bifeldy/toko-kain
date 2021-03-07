@@ -88,7 +88,7 @@ function run(): void {
     console.log(`[DB] 📚 ${c.options.type} Database ~ ${c.options.username}@${c.options.host}:${c.options.port}/${c.options.database} 🎀`);
     const port = process.env.PORT || 4000;
     const listener: any = app().listen(port, () => {
-      console.log(`[HTTP] ✨ Node Angular TypeORM Express Socket ~ ${listener.address().address}:${listener.address().port} 💘`);
+      console.log(`[HTTP] ✨ Node Angular TypeORM Express ~ ${listener.address().address}:${listener.address().port} 💘`);
     });
   }).catch(
     error => console.error(error)

@@ -7,8 +7,6 @@ import { UserRequest } from '../models/UserRequest';
 
 import { Role } from '../../app/_shared/models/Role';
 
-import { Jenis } from '../entities/Jenis';
-import { Kategori } from '../entities/Kategori';
 import { Kain } from '../entities/Kain';
 import { Tipe } from '../entities/Tipe';
 

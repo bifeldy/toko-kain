@@ -145,7 +145,10 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": true
+              "optimization": true,
+              "externalDependencies": [
+                "pg"
+              ]
             }
           }
         },
