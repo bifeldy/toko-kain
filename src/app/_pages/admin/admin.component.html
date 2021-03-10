@@ -1,0 +1,311 @@
+<div class="container-fluid">
+
+  <div class="row p-3">
+    <div class="col-12">
+      <a routerLink="/home">Home</a>
+    </div>
+  </div>
+
+  <!-- Login -->
+
+  <div class="row p-3">
+    <div class="col-12">
+      <form [formGroup]="fgLogin" class="m-2" (ngSubmit)="login()" *ngIf="fgLogin">
+        <div class="form-group row py-2">
+          <label for="userNameOrEmail" class="col-md-4 col-form-label text-md-end">Nama Pengguna</label>
+          <div class="col-md-8">
+            <input type="text" id="userNameOrEmail" class="form-control {{
+                !fgLogin.get('userNameOrEmail').valid && fgLogin.get('userNameOrEmail').touched ? 'is-invalid' : ''
+              }}" placeholder="Username / E-Mail" required autofocus formControlName="userNameOrEmail" autocomplete="email, username" />
+            <span class="invalid-feedback" role="alert">
+              <strong *ngIf="fgLogin.get('userNameOrEmail').hasError('required')">
+                Username / Email Tidak Boleh Kosong! <br />
+              </strong>
+              <strong *ngIf="fgLogin.get('userNameOrEmail').hasError('pattern')">
+                Username / Email Hanya Boleh Huruf Standar Papan Ketik <br />
+              </strong>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row py-2">
+          <label for="password" class="col-md-4 col-form-label text-md-end">Kata Sandi</label>
+          <div class="col-md-8">
+            <input type="password" id="password" class="form-control {{
+                !fgLogin.get('password').valid && fgLogin.get('password').touched ? 'is-invalid' : ''
+              }}" placeholder="Password" required formControlName="password" autocomplete="current-password, new-password" />
+            <span class="invalid-feedback" role="alert">
+              <strong *ngIf="fgLogin.get('password').hasError('required')">
+                Password Tidak Boleh Kosong! <br />
+              </strong>
+              <strong *ngIf="fgLogin.get('password').hasError('pattern')">
+                Password Hanya Boleh Huruf Standar Papan Ketik <br />
+              </strong>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row mb-0 py-2">
+          <div class="col-md-8 offset-md-4">
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="submitted || fgLogin.invalid">
+                  Masuk <mat-icon class="ms-1">vpn_key</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row p-3">
+    <div class="col-12" style="word-break: break-all;">
+      Token :: {{ loginToken }}
+    </div>
+  </div>
+
+  <!-- Kategori -->
+
+  <div class="row p-3">
+    <div class="col-12">
+      Kategori
+    </div>
+    <div class="col-12">
+      <ul>
+        <li *ngFor="let k of kategori">
+          {{ k.id }} :: {{ k.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row p-3">
+    <div class="col-12">
+      <form [formGroup]="fgKategori" class="m-2" (ngSubmit)="addKategori()" *ngIf="fgKategori">
+        <div class="form-group row py-2">
+          <label for="name" class="col-md-4 col-form-label text-md-end">Kategori</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control {{
+                !fgKategori.get('name').valid && fgKategori.get('name').touched ? 'is-invalid' : ''
+              }}" placeholder="Pria / Wanita / Waria" required autofocus formControlName="name" autocomplete="name" />
+            <span class="invalid-feedback" role="alert">
+              <strong *ngIf="fgKategori.get('name').hasError('required')">
+                Nama Kategori Tidak Boleh Kosong! <br />
+              </strong>
+              <strong *ngIf="fgKategori.get('name').hasError('pattern')">
+                Nama Kategori Hanya Boleh Huruf Standar Papan Ketik <br />
+              </strong>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row mb-0 py-2">
+          <div class="col-md-8 offset-md-4">
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="submitted || fgKategori.invalid">
+                  Tambah Kategori <mat-icon class="ms-1">add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Jenis -->
+
+  <div class="row p-3">
+    <div class="col-12">
+      Jenis
+    </div>
+    <div class="col-12">
+      <ul>
+        <li *ngFor="let j of jenis">
+          {{ j.id }} :: {{ j.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row p-3">
+    <div class="col-12">
+      <form [formGroup]="fgJenis" class="m-2" (ngSubmit)="addJenis()" *ngIf="fgJenis">
+        <div class="form-group row py-2">
+          <label for="name" class="col-md-4 col-form-label text-md-end">Jenis</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control {{
+                !fgJenis.get('name').valid && fgJenis.get('name').touched ? 'is-invalid' : ''
+              }}" placeholder="Atasan / Bawahan / Tengahan" required autofocus formControlName="name" autocomplete="name" />
+            <span class="invalid-feedback" role="alert">
+              <strong *ngIf="fgJenis.get('name').hasError('required')">
+                Nama Jenis Tidak Boleh Kosong! <br />
+              </strong>
+              <strong *ngIf="fgJenis.get('name').hasError('pattern')">
+                Nama Jenis Hanya Boleh Huruf Standar Papan Ketik <br />
+              </strong>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row mb-0 py-2">
+          <div class="col-md-8 offset-md-4">
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="submitted || fgJenis.invalid">
+                  Tambah Jenis <mat-icon class="ms-1">add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tipe -->
+
+  <div class="row p-3">
+    <div class="col-12">
+      Tipe
+    </div>
+    <div class="col-12">
+      <ul>
+        <li *ngFor="let t of tipe">
+          {{ t.id }} :: {{ t.name }} ~ {{ t.jenis_ }} ~ {{ t.kategori_ }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row p-3">
+    <div class="col-12">
+      <form [formGroup]="fgTipe" class="m-2" (ngSubmit)="addTipe()" *ngIf="fgTipe">
+        <div class="form-group row py-2">
+          <label for="name" class="col-md-4 col-form-label text-md-end">Tipe</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control {{
+                !fgTipe.get('name').valid && fgTipe.get('name').touched ? 'is-invalid' : ''
+              }}" placeholder="Kostum Cosplay Maid Full Set" required autofocus formControlName="name" autocomplete="name" />
+            <span class="invalid-feedback" role="alert">
+              <strong *ngIf="fgTipe.get('name').hasError('required')">
+                Nama Tipe Tidak Boleh Kosong! <br />
+              </strong>
+              <strong *ngIf="fgTipe.get('name').hasError('pattern')">
+                Nama Tipe Hanya Boleh Huruf Standar Papan Ketik <br />
+              </strong>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row py-2">
+          <label for="jenis_id" class="col-md-4 col-form-label text-md-end">Jenis</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control {{
+                !fgTipe.get('jenis_id').valid && fgTipe.get('jenis_id').touched ? 'is-invalid' : ''
+              }}" placeholder="1,2,3" required autofocus formControlName="jenis_id" autocomplete="jenis_id" />
+            <span class="invalid-feedback" role="alert">
+              <strong *ngIf="fgTipe.get('jenis_id').hasError('required')">
+                Jenis Id Tidak Boleh Kosong! <br />
+              </strong>
+              <strong *ngIf="fgTipe.get('jenis_id').hasError('pattern')">
+                Jenis Id Hanya Boleh Angka Id Dengan Koma <br />
+              </strong>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row py-2">
+          <label for="kategori_id" class="col-md-4 col-form-label text-md-end">Kategori</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control {{
+                !fgTipe.get('kategori_id').valid && fgTipe.get('kategori_id').touched ? 'is-invalid' : ''
+              }}" placeholder="4,5,6" required autofocus formControlName="kategori_id" autocomplete="kategori_id" />
+            <span class="invalid-feedback" role="alert">
+              <strong *ngIf="fgTipe.get('kategori_id').hasError('required')">
+                Kategori Id Tidak Boleh Kosong! <br />
+              </strong>
+              <strong *ngIf="fgTipe.get('kategori_id').hasError('pattern')">
+                Kategori Id Hanya Boleh Angka Id Dengan Koma <br />
+              </strong>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row mb-0 py-2">
+          <div class="col-md-8 offset-md-4">
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="submitted || fgTipe.invalid">
+                  Tambah Tipe <mat-icon class="ms-1">add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Kain -->
+
+  <div class="row p-3">
+    <div class="col-12">
+      Kain
+    </div>
+    <div class="col-12">
+      <ul>
+        <li *ngFor="let k of kain">
+          {{ k.id }} :: {{ k.name }} ~ {{ k.tipe_ }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row p-3">
+    <div class="col-12">
+      <form [formGroup]="fgKain" class="m-2" (ngSubmit)="addKain()" *ngIf="fgKain">
+        <div class="form-group row py-2">
+          <label for="name" class="col-md-4 col-form-label text-md-end">Kain</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control {{
+                !fgKain.get('name').valid && fgKain.get('name').touched ? 'is-invalid' : ''
+              }}" placeholder="Kain Kapan Kuburan" required autofocus formControlName="name" autocomplete="name" />
+            <span class="invalid-feedback" role="alert">
+              <strong *ngIf="fgKain.get('name').hasError('required')">
+                Nama Kain Tidak Boleh Kosong! <br />
+              </strong>
+              <strong *ngIf="fgKain.get('name').hasError('pattern')">
+                Nama Kain Hanya Boleh Huruf Standar Papan Ketik <br />
+              </strong>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row py-2">
+          <label for="tipe_id" class="col-md-4 col-form-label text-md-end">Tipe</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control {{
+                !fgKain.get('tipe_id').valid && fgKain.get('tipe_id').touched ? 'is-invalid' : ''
+              }}" placeholder="1,2,3,4,5,6,7,8,9,10" required autofocus formControlName="tipe_id" autocomplete="tipe_id" />
+            <span class="invalid-feedback" role="alert">
+              <strong *ngIf="fgKain.get('tipe_id').hasError('required')">
+                Tipe Id Tidak Boleh Kosong! <br />
+              </strong>
+              <strong *ngIf="fgKain.get('tipe_id').hasError('pattern')">
+                Tipe Id Hanya Boleh Angka Id Dengan Koma <br />
+              </strong>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row mb-0 py-2">
+          <div class="col-md-8 offset-md-4">
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="submitted || fgKain.invalid">
+                  Tambah Kain <mat-icon class="ms-1">add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

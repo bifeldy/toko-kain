@@ -1,36 +1,43 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { TransferHttpCacheModule } from '@nguniversal/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { SharedMaterialModule } from './_shared/helpers/shared-material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { AdminComponent } from './_pages/admin/admin.component';
 import { HomeComponent } from './_pages/home/home.component';
-import { JenisComponent } from './_pages/jenis/jenis.component';
-import { KainComponent } from './_pages/kain/kain.component';
-import { KategoriComponent } from './_pages/kategori/kategori.component';
-import { LoginComponent } from './_pages/login/login.component';
-import { TipeComponent } from './_pages/tipe/tipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    JenisComponent,
-    KainComponent,
-    KategoriComponent,
-    LoginComponent,
-    TipeComponent
+    AdminComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
+    TransferHttpCacheModule,
+    HttpClientModule,
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedMaterialModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

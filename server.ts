@@ -86,7 +86,7 @@ function run(): void {
     const c: any = connection;
     // tslint:disable-next-line: max-line-length
     console.log(`[DB] 📚 ${c.options.type} Database ~ ${c.options.username}@${c.options.host}:${c.options.port}/${c.options.database} 🎀`);
-    const port = process.env.PORT || 4000;
+    const port = process.env.PORT || environment.appPort;
     const listener: any = app().listen(port, () => {
       console.log(`[HTTP] ✨ Node Angular TypeORM Express ~ ${listener.address().address}:${listener.address().port} 💘`);
     });

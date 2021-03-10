@@ -14,6 +14,7 @@ export const environment = {
   siteName: 'Toko Kain',
   jwtSecretKey: 'Toko-Kain-Dev',
   tokenName: 'toko-kain_token',
+  appPort: 4000,
   dbType: 'postgres',
   dbHost: 'localhost',
   dbPort: 5432,

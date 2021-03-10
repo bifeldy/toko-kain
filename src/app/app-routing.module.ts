@@ -1,21 +1,16 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+import { SharedMaterialModule } from './_shared/helpers/shared-material.module';
+
+import { AdminComponent } from './_pages/admin/admin.component';
 import { HomeComponent } from './_pages/home/home.component';
-import { JenisComponent } from './_pages/jenis/jenis.component';
-import { KainComponent } from './_pages/kain/kain.component';
-import { KategoriComponent } from './_pages/kategori/kategori.component';
-import { LoginComponent } from './_pages/login/login.component';
-import { TipeComponent } from './_pages/tipe/tipe.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'admin', component: AdminComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'jenis', component: JenisComponent },
-  { path: 'kain', component: KainComponent },
-  { path: 'kategori', component: KategoriComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'tipe', component: TipeComponent },
   { path: '**', redirectTo: 'home' }
 ];
 
@@ -24,7 +19,10 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { initialNavigation: 'enabled' })
   ],
   exports: [
-    RouterModule
+    RouterModule,
+    SharedMaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AppRoutingModule { }

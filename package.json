@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev:ssr": "ng run toko-kain:serve-ssr",
-    "serve:ssr": "node dist/toko-kain/server/main.js",
+    "serve:ssr": "ng build && ng run toko-kain:server:production && node dist/toko-kain/server/main.js",
     "build:ssr": "ng build --prod && ng run toko-kain:server:production",
     "prerender": "ng run toko-kain:prerender"
   },
