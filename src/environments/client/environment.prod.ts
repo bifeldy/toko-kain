@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
-  baseUrl: 'http://localhost:4000',
+  production: true,
+  baseUrl: 'https://demo-api.tokokain.co.id',
   apiUrl: '/api'
 };
