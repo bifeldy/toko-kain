@@ -4,7 +4,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 export class Kategori {
 
   @PrimaryGeneratedColumn('increment')
-  id: number;
+  id: string;
 
   @Column({ type: 'varchar', length: 255 })
   name: string;

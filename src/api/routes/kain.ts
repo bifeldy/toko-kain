@@ -17,9 +17,9 @@ const router = Router();
 
 // GET `/api/kain?tipe=<id>&kategori=<id>&jenis=<id>`
 router.get('/', async (req: UserRequest, res: Response, next: NextFunction) => {
-  const tipe_id = req.query.tipe ? req.query.tipe.split(',').map(Number) : [];
-  const jenis_id = req.query.jenis ? req.query.jenis.split(',').map(Number) : [];
-  const kategori_id = req.query.kategori ? req.query.kategori.split(',').map(Number) : [];
+  const tipe_id = req.query.tipe ? req.query.tipe.split(',') : [];
+  const jenis_id = req.query.jenis ? req.query.jenis.split(',') : [];
+  const kategori_id = req.query.kategori ? req.query.kategori.split(',') : [];
   const kainRepo = getRepository(Kain);
   let kainRepoQuery = kainRepo.createQueryBuilder('kain')
     .leftJoinAndSelect('kain.tipe_', 'tipe_')
@@ -56,7 +56,7 @@ router.post('/', auth.isAuthorized, async (req: UserRequest, res: Response, next
         const tipeRepo = getRepository(Tipe);
         const tipe = await tipeRepo.find({
           where: [
-            { id: In([req.body.tipe_id]) }
+            { id: In(req.body.tipe_id) }
           ]
         });
         kain.tipe_ = tipe;
@@ -95,7 +95,7 @@ router.get('/:id', async (req: UserRequest, res: Response, next: NextFunction) =
       where: [
         { id: Equal(req.params.id) }
       ],
-      relations: ['jenis_', 'kategori_']
+      relations: ['tipe_']
     });
     return res.status(200).json({
       info: `😅 200 - Kain API :: List All 🤣`,
@@ -130,7 +130,7 @@ router.put('/:id', auth.isAuthorized, async (req: UserRequest, res: Response, ne
             const tipeRepo = getRepository(Tipe);
             const tipe = await tipeRepo.find({
               where: [
-                { id: In([req.body.tipe_id]) }
+                { id: In(req.body.tipe_id) }
               ]
             });
             kain.tipe_ = tipe;

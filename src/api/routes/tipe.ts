@@ -18,8 +18,8 @@ const router = Router();
 
 // GET `/api/tipe?kategori=<id>&jenis=<id>`
 router.get('/', async (req: UserRequest, res: Response, next: NextFunction) => {
-  const jenis_id = req.query.jenis ? req.query.jenis.split(',').map(Number) : [];
-  const kategori_id = req.query.kategori ? req.query.kategori.split(',').map(Number) : [];
+  const jenis_id = req.query.jenis ? req.query.jenis.split(',') : [];
+  const kategori_id = req.query.kategori ? req.query.kategori.split(',') : [];
   const tipeRepo = getRepository(Tipe);
   let tipeRepoQuery = tipeRepo.createQueryBuilder('tipe')
     .leftJoinAndSelect('tipe.jenis_', 'jenis_')
@@ -56,14 +56,14 @@ router.post('/', auth.isAuthorized, async (req: UserRequest, res: Response, next
         const jenisRepo = getRepository(Jenis);
         const jenis = await jenisRepo.find({
           where: [
-            { id: In([req.body.jenis_id]) }
+            { id: In(req.body.jenis_id) }
           ]
         });
         tipe.jenis_ = jenis;
         const kategoriRepo = getRepository(Kategori);
         const kategori = await kategoriRepo.find({
           where: [
-            { id: In([req.body.kategori_id]) }
+            { id: In(req.body.kategori_id) }
           ]
         });
         tipe.kategori_ = kategori;
@@ -138,7 +138,7 @@ router.put('/:id', auth.isAuthorized, async (req: UserRequest, res: Response, ne
             const jenisRepo = getRepository(Jenis);
             const jenis = await jenisRepo.find({
               where: [
-                { id: In([req.body.jenis_id]) }
+                { id: In(req.body.jenis_id) }
               ]
             });
             tipe.jenis_ = jenis;
@@ -147,7 +147,7 @@ router.put('/:id', auth.isAuthorized, async (req: UserRequest, res: Response, ne
             const kategoriRepo = getRepository(Kategori);
             const kategori = await kategoriRepo.find({
               where: [
-                { id: In([req.body.kategori_id]) }
+                { id: In(req.body.kategori_id) }
               ]
             });
             tipe.kategori_ = kategori;

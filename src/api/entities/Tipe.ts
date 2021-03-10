@@ -7,7 +7,7 @@ import { Kategori } from './Kategori';
 export class Tipe {
 
   @PrimaryGeneratedColumn('increment')
-  id: number;
+  id: string;
 
   @Column({ type: 'varchar', length: 255 })
   name: string;

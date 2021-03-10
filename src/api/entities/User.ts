@@ -6,7 +6,7 @@ import { Role } from '../../app/_shared/models/Role';
 export class User {
 
   @PrimaryGeneratedColumn('increment')
-  id: number;
+  id: string;
 
   @Column({ type: 'varchar', length: 255, unique: true })
   username: string;
