@@ -95,7 +95,7 @@ router.get('/:id', async (req: UserRequest, res: Response, next: NextFunction) =
       where: [
         { id: Equal(req.params.id) }
       ],
-      relations: ['tipe_']
+      relations: ['tipe_', 'tipe_.jenis_', 'tipe_.kategori_']
     });
     return res.status(200).json({
       info: `😅 200 - Kain API :: List All 🤣`,
@@ -121,7 +121,7 @@ router.put('/:id', auth.isAuthorized, async (req: UserRequest, res: Response, ne
             where: [
               { id: Equal(req.params.id) }
             ],
-            relations: ['tipe_']
+            relations: ['tipe_', 'tipe_.jenis_', 'tipe_.kategori_']
           });
           if (req.body.name) {
             kain.name = req.body.name;
