@@ -152,13 +152,16 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   addKategori(): void {
+    this.submitted = true;
     this.subsKategoriAdd = this.a.addKategori(this.fgKategori.value).subscribe({
       next: (res: any) => {
         this.gs.log('[KATEGORI_ADD_SUCCESS]', res);
         this.getKategori();
+        this.submitted = false;
       },
       error: err => {
         this.gs.log('[KATEGORI_ADD_ERROR]', err);
+        this.submitted = false;
       }
     });
   }
@@ -184,13 +187,16 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   addJenis(): void {
+    this.submitted = true;
     this.subsJenisAdd = this.a.addJenis(this.fgJenis.value).subscribe({
       next: (res: any) => {
         this.gs.log('[JENIS_ADD_SUCCESS]', res);
         this.getJenis();
+        this.submitted = false;
       },
       error: err => {
         this.gs.log('[JENIS_ADD_ERROR]', err);
+        this.submitted = false;
       }
     });
   }
@@ -235,6 +241,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   addTipe(): void {
+    this.submitted = true;
     this.subsTipeAdd = this.a.addTipe({
       name: this.fgTipe.value.name,
       jenis_id: this.fgTipe.value.jenis_id.split(',').map(Number),
@@ -243,9 +250,11 @@ export class AdminComponent implements OnInit, OnDestroy {
       next: (res: any) => {
         this.gs.log('[TIPE_ADD_SUCCESS]', res);
         this.getTipe();
+        this.submitted = false;
       },
       error: err => {
         this.gs.log('[TIPE_ADD_ERROR]', err);
+        this.submitted = false;
       }
     });
   }
@@ -285,16 +294,19 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   addKain(): void {
+    this.submitted = true;
     this.subsKainAdd = this.a.addKain({
       name: this.fgKain.value.name,
       tipe_id: this.fgKain.value.tipe_id.split(',').map(Number)
     }).subscribe({
       next: (res: any) => {
         this.gs.log('[KAIN_ADD_SUCCESS]', res);
+        this.submitted = false;
         this.getKain();
       },
       error: err => {
         this.gs.log('[KAIN_ADD_ERROR]', err);
+        this.submitted = false;
       }
     });
   }
