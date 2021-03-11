@@ -1,67 +1,111 @@
-<div class="container-fluid">
-
-  <div class="row p-3">
-    <div class="col-12">
-      <a routerLink="/admin">Admin</a>
-    </div>
+<div class="flex p-2 align-middle items-center fixed-top bg-white">
+  <div class="flex-1">
+    <img src="/assets/img/toko-logo.svg" style="height: 65px;" />
   </div>
+  <div class="flex-1 text-right">
+    <button (click)="contactUs()" class="btn btn-lg btn-outline-success whatsapp">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="display: inline;">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+      </svg>
+      <span class="ml-1">
+        Chat Admin
+      </span>
+    </button>
+  </div>
+</div>
 
-  <!-- Predict -->
-
-  <div class="row p-3">
-    <div class="col-12">
-      <div class="form-group row py-2">
-        <label for="userNameOrEmail" class="col-md-4 col-form-label text-md-end">
-          Kategori
-        </label>
-        <div class="col-md-8">
-          <select class="col-12" [(ngModel)]="kategori_id" (change)="kategoriSelected($event)">
-            <option value="{{ k.id }}" *ngFor="let k of kategori">
-              {{ k.name }}
-            </option>
-          </select>
+<div class="relative">
+  <img class="object-cover" src="/assets/img/banner-kain.jpg" style="width: 100vw; height: 100vh;" />
+  <div class="absolute inset-x-0 top-0 h-full lg:left-0 justify-center items-center">
+    <div class="bg-black bg-opacity-50 h-full">
+      <div class="pt-40 pl-10 md:pt-60 md:pl-20 lg:pt-80 lg:pl-40">
+        <div class="m-3 text-white font-bold text-xl md:text-3xl lg:text-5xl">
+          Lebih dari 3000 varian.
         </div>
-      </div>
-      <div class="form-group row py-2">
-        <label for="password" class="col-md-4 col-form-label text-md-end">
-          Jenis
-        </label>
-        <div class="col-md-8">
-          <select class="col-12" [(ngModel)]="jenis_id" (change)="jenisSelected($event)">
-            <option value="{{ j.id }}" *ngFor="let j of jenis">
-              {{ j.name }}
-            </option>
-          </select>
+        <div class="m-3 text-white font-bold text-xl md:text-3xl lg:text-5xl">
+          Temukan bahan kainmu.
         </div>
-      </div>
-      <div class="form-group row py-2">
-        <label for="password" class="col-md-4 col-form-label text-md-end">
-          Tipe
-        </label>
-        <div class="col-md-8">
-          <div class="custom-control custom-checkbox" *ngFor="let t of tipe">
-            <input class="custom-control-input" type="checkbox" name="{{ t.name }}" id="tipe_{{ t.id }}" value=""
-              [ngModel]="t.selected" (ngModelChange)="tipeSelected($event, t.id)" />
-            <label class="custom-control-label d-inline" for="tipe_{{ t.id }}">
-              {{ t.name }}
-            </label>
-          </div>
+        <div class="m-3 text-white font-bold text-xl md:text-3xl lg:text-5xl">
+          <button class="btn btn-lg btn-warning" (click)="scroll(start)">
+            Cari Disini
+          </button>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="row p-3">
-    <div class="col-12">
-      Kain
-    </div>
-    <div class="col-12">
-      <ul>
-        <li *ngFor="let k of kain">
-          {{ k.name }}
-        </li>
-      </ul>
-    </div>
+<div class="p-10 text-center" #start></div>
+
+<div class="p-10 text-center">
+  <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
+    Pilih Gender
   </div>
+  <div class="btn-group m-3" btnRadioGroup [(ngModel)]="kategori_id">
+    <button class="mx-2 btn btn-outline-gray" btnCheckbox btnRadio="{{ k.id }}" *ngFor="let k of kategori" (click)="kategoriSelected($event)">
+      {{ k.name }}
+    </button>
+  </div>
+</div>
 
+<div class="p-10 text-center">
+  /<div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
+    Pilih Kategori
+  </div>
+  <div class="btn-group m-3" btnRadioGroup [(ngModel)]="jenis_id">
+    <button class="mx-2 btn btn-outline-gray" btnCheckbox btnRadio="{{ j.id }}" *ngFor="let j of jenis" (click)="jenisSelected($event)">
+      {{ j.name }}
+    </button>
+  </div>
+</div>
+
+<div class="p-10 text-center" *ngIf="tipe.length > 0">
+  /<div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
+    Pilih Tipe
+  </div>
+  <div class="custom-control custom-checkbox m-3 d-inline text-xl" *ngFor="let t of tipe">
+    <input class="custom-control-input" type="checkbox" name="{{ t.name }}" id="tipe_{{ t.id }}" [ngModel]="t.selected" (ngModelChange)="tipeSelected($event, t)" />
+    <label class="custom-control-label d-inline" for="tipe_{{ t.id }}">
+      {{ t.name }}
+    </label>
+  </div>
+</div>
+
+<div class="p-10 text-center" *ngIf="tipe_id.length > 0">
+  <button class="btn btn-lg btn-primary p-3" (click)="requestSample(end)" [disabled]="submitted">
+    Request Sample
+  </button>
+</div>
+
+<div class="p-10 text-center" #end></div>
+
+<div class="p-10 text-center bg-light" *ngIf="kain.length > 0">
+  <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
+    Pilihan Kain Untukmu <br /> <span class="text-sm">Jumlah pilih maksimal {{ maxSelectKain }} barang.</span>
+  </div>
+  <div class="btn-group m-3">
+    <button class="mx-2 btn btn-outline-gray" btnCheckbox *ngFor="let k of kain" [class.active]="k.selected" [ngModel]="k.selected" (ngModelChange)="kainSelected($event, k)">
+      {{ k.name }}
+    </button>
+  </div>
+</div>
+
+<div class="p-10 text-center bg-light" *ngIf="kain_name.length > 0">
+  <button (click)="orderKain()" class="btn btn-lg btn-outline-success whatsapp p-3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="display: inline;">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+    </svg>
+    <span class="ml-1">
+      Pesan Kain Via WhatsApp
+    </span>
+  </button>
+</div>
+
+<div class="flex align-middle items-center footer px-10 bg-light">
+  <div class="flex-1">
+    Toko Kain © 2021
+  </div>
+  <div class="flex-1 text-right">
+    <img src="/assets/img/toko-logo.svg" class="inline" style="height: 100px;" />
+  </div>
 </div>

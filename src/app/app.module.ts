@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { SharedMaterialModule } from './_shared/helpers/shared-material.module';
+import { SharedBootstrapModule } from './_shared/helpers/shared-bootstrap.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -33,7 +34,8 @@ import { HomeComponent } from './_pages/home/home.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedMaterialModule
+    SharedMaterialModule,
+    SharedBootstrapModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } },
