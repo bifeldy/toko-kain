@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:4000',
-  apiUrl: '/api'
+  baseUrl: 'http://localhost:4200',
+  apiUrl: 'https://demo-api.tokokain.co.id/api'
 };
 
 /*

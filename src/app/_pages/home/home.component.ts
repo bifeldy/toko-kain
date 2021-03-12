@@ -11,6 +11,7 @@ import { AdminService } from '../../_shared/services/admin.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
   phoneNumber = '6287871188899';
+  phoneNumber02 = '628892366466'
 
   submitted = false;
 
@@ -70,11 +71,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   contactUs(message = 'Hai kak, Aku mau beli kain, stok apa saja yang tersedia?') {
-    window.open(`https://wa.me/${this.phoneNumber}?text=${message}`, '_blank');
+    window.open(`https://wa.me/${this.phoneNumber02}?text=${message}`, '_blank');
   }
 
   orderKain(): void {
-    this.contactUs(`Kak, aku mau pesan kain ini donk. ${this.kain_name}.`);
+    this.contactUs(`Kak, aku mau pesan kain ini donk. %0A${encodeURIComponent(this.kain_name.map((k, i) => `${i+1}. ${k}`).join('\n'))}.`);
   }
 
   kategoriSelected($event): void {
