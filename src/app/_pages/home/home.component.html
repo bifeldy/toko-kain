@@ -49,7 +49,7 @@
 </div>
 
 <div class="p-10 text-center">
-  /<div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
+  <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
     Pilih Kategori
   </div>
   <div class="btn-group m-3" btnRadioGroup [(ngModel)]="jenis_id">
@@ -59,15 +59,17 @@
   </div>
 </div>
 
-<div class="p-10 text-center" *ngIf="tipe.length > 0">
+<div class="p-10 text-center container" *ngIf="tipe.length > 0">
   <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
     Pilih Tipe
   </div>
-  <div class="custom-control custom-checkbox m-3 d-inline text-xl" *ngFor="let t of tipe">
-    <input class="custom-control-input" type="checkbox" name="{{ t.name }}" id="tipe_{{ t.id }}" [ngModel]="t.selected" (ngModelChange)="tipeSelected($event, t)" />
-    <label class="custom-control-label d-inline" for="tipe_{{ t.id }}">
-      {{ t.name }}
-    </label>
+  <div class="m-3 inline-grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 text-left">
+    <div class="custom-control custom-checkbox m-3 d-inline text-xl" *ngFor="let t of tipe">
+      <input class="custom-control-input" type="checkbox" name="{{ t.name }}" id="tipe_{{ t.id }}" [ngModel]="t.selected" (ngModelChange)="tipeSelected($event, t)" />
+      <label class="custom-control-label d-inline" for="tipe_{{ t.id }}">
+        {{ t.name }}
+      </label>
+    </div>
   </div>
 </div>
 
@@ -83,8 +85,8 @@
   <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
     Pilihan Kain Untukmu <br /> <span class="text-sm">Jumlah pilih maksimal {{ maxSelectKain }} barang.</span>
   </div>
-  <div class="btn-group m-3">
-    <button class="mx-2 btn btn-outline-gray" btnCheckbox *ngFor="let k of kain" [class.active]="k.selected" [ngModel]="k.selected" (ngModelChange)="kainSelected($event, k)">
+  <div class="btn-group m-3 inline-grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+    <button class="btn btn-outline-gray" btnCheckbox *ngFor="let k of kain" [class.active]="k.selected" [ngModel]="k.selected" (ngModelChange)="kainSelected($event, k)">
       {{ k.name }}
     </button>
   </div>
