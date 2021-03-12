@@ -153,7 +153,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   addKategori(): void {
     this.submitted = true;
-    this.subsKategoriAdd = this.a.addKategori(this.fgKategori.value).subscribe({
+    this.subsKategoriAdd = this.a.addKategori({ ...this.fgKategori.value, token: this.loginToken }).subscribe({
       next: (res: any) => {
         this.gs.log('[KATEGORI_ADD_SUCCESS]', res);
         this.getKategori();
@@ -188,7 +188,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   addJenis(): void {
     this.submitted = true;
-    this.subsJenisAdd = this.a.addJenis(this.fgJenis.value).subscribe({
+    this.subsJenisAdd = this.a.addJenis({ ...this.fgJenis.value, token: this.loginToken }).subscribe({
       next: (res: any) => {
         this.gs.log('[JENIS_ADD_SUCCESS]', res);
         this.getJenis();
@@ -245,7 +245,8 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subsTipeAdd = this.a.addTipe({
       name: this.fgTipe.value.name,
       jenis_id: this.fgTipe.value.jenis_id.split(',').map(Number),
-      kategori_id: this.fgTipe.value.kategori_id.split(',').map(Number)
+      kategori_id: this.fgTipe.value.kategori_id.split(',').map(Number),
+      token: this.loginToken
     }).subscribe({
       next: (res: any) => {
         this.gs.log('[TIPE_ADD_SUCCESS]', res);
@@ -297,7 +298,8 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.submitted = true;
     this.subsKainAdd = this.a.addKain({
       name: this.fgKain.value.name,
-      tipe_id: this.fgKain.value.tipe_id.split(',').map(Number)
+      tipe_id: this.fgKain.value.tipe_id.split(',').map(Number),
+      token: this.loginToken
     }).subscribe({
       next: (res: any) => {
         this.gs.log('[KAIN_ADD_SUCCESS]', res);
