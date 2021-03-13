@@ -122,15 +122,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   requestSample(el: HTMLElement): void {
-    this.submitted = true;
     if (this.tipe_id_checkbox.length > 0 || this.tipe_id_radio) {
       this.getKain(this.tipe_id_radio, this.kategori_id, this.jenis_id);
       // this.getKain(this.tipe_id_checkbox, this.kategori_id, this.jenis_id);
+      this.scroll(el);
     } else {
       this.kain = [];
-      this.submitted = false;
     }
-    this.scroll(el);
   }
 
   getKategori(): void {
@@ -172,6 +170,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getKain(tipeId, kategoriId, jenisId): void {
+    this.submitted = true;
     this.subsKainGet = this.a.getKain(tipeId, kategoriId, jenisId).subscribe({
       next: (res: any) => {
         this.gs.log('[KAIN_GET_SUCCESS]', res);

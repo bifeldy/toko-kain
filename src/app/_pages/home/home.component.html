@@ -86,7 +86,7 @@
   <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
     Pilihan Kain Untukmu <br /> <span class="text-sm">Jumlah pilih maksimal {{ maxSelectKain }} barang.</span>
   </div>
-  <div class="btn-group m-3 inline-grid gap-3 {{ (kain.length >= 4 ? 'lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2' : (kain.length >= 3 ? 'md:grid-cols-3 sm:grid-cols-2' : (kain.length >= 2 ? 'sm:grid-cols-2' : '' ) )) }} grid-cols-1">
+  <div class="btn-group m-3 inline-grid gap-3 {{ kain.length >= 4 ? 'lg:grid-cols-4' : '' }} {{ kain.length >= 3 ? 'md:grid-cols-3' : '' }} {{ kain.length >= 2 ? 'sm:grid-cols-2' : '' }} grid-cols-1">
     <button class="btn btn-outline-gray" btnCheckbox *ngFor="let k of kain" [class.active]="k.selected" [ngModel]="k.selected" (ngModelChange)="kainSelected($event, k)">
       {{ k.name }}
     </button>
