@@ -10,7 +10,7 @@ import { AdminService } from '../../_shared/services/admin.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  phoneNumber = '6287871188899';
+  phoneNumber = '62811884151';
   maxSelectKain = 10;
 
   submitted = false;
