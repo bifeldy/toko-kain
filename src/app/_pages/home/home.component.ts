@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   jenis_id = null;
   jenis = [];
 
-  tipe_id = [];
+  tipe_id_checkbox = [];
+  tipe_id_radio = null;
   tipe = [];
 
   kain_name = [];
@@ -79,27 +80,32 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   kategoriSelected($event): void {
-    this.tipe_id = [];
+    this.tipe_id_checkbox = [];
     if (this.kategori_id && this.jenis_id) {
       this.getTipe(this.kategori_id, this.jenis_id);
     }
   }
 
   jenisSelected($event): void {
-    this.tipe_id = [];
+    this.tipe_id_checkbox = [];
     if (this.kategori_id && this.jenis_id) {
       this.getTipe(this.kategori_id, this.jenis_id);
     }
   }
 
-  tipeSelected($event, tipe): void {
+  tipeSelectedRadio($event, tipe): void {
+    //
+  }
+
+  tipeSelectedCheckbox($event, tipe): void {
     const idx = this.tipe.findIndex(t => t.id === tipe.id);
     this.tipe[idx].selected = !this.tipe[idx].selected;
     if (this.tipe[idx].selected) {
-      this.tipe_id.push(this.tipe[idx].id);
+      this.tipe_id_checkbox.push(this.tipe[idx].id);
     } else {
-      this.tipe_id = this.tipe_id.filter(x => x !== this.tipe[idx].id);
+      this.tipe_id_checkbox = this.tipe_id_checkbox.filter(x => x !== this.tipe[idx].id);
     }
+    console.log(this.tipe_id_checkbox);
   }
 
   kainSelected($event, kain): void {
@@ -118,8 +124,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   requestSample(el: HTMLElement): void {
     this.submitted = true;
-    if (this.tipe_id.length > 0) {
-      this.getKain(this.tipe_id, this.kategori_id, this.jenis_id);
+    if (this.tipe_id_checkbox.length > 0 || this.tipe_id_radio) {
+      this.getKain(this.tipe_id_radio, this.kategori_id, this.jenis_id);
+      // this.getKain(this.tipe_id_checkbox, this.kategori_id, this.jenis_id);
     } else {
       this.kain = [];
       this.submitted = false;
@@ -152,6 +159,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getTipe(kategoriId, jenisId): void {
+    this.tipe_id_radio = null;
+    this.tipe_id_checkbox = [];
     this.subsTipeGet = this.a.getTipe(kategoriId, jenisId).subscribe({
       next: (res: any) => {
         this.gs.log('[TIPE_GET_SUCCESS]', res);
