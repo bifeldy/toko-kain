@@ -42,8 +42,7 @@
     Pilih Gender
   </div>
   <div class="btn-group m-3" btnRadioGroup [(ngModel)]="kategori_id">
-    <button class="mx-2 btn btn-outline-gray" btnCheckbox btnRadio="{{ k.id }}" *ngFor="let k of kategori"
-      (click)="kategoriSelected($event)">
+    <button class="mx-2 btn btn-outline-gray" btnCheckbox btnRadio="{{ k.id }}" *ngFor="let k of kategori" (click)="kategoriSelected($event)">
       {{ k.name }}
     </button>
   </div>
@@ -54,8 +53,7 @@
     Pilih Kategori
   </div>
   <div class="btn-group m-3" btnRadioGroup [(ngModel)]="jenis_id">
-    <button class="mx-2 btn btn-outline-gray" btnCheckbox btnRadio="{{ j.id }}" *ngFor="let j of jenis"
-      (click)="jenisSelected($event)">
+    <button class="mx-2 btn btn-outline-gray" btnCheckbox btnRadio="{{ j.id }}" *ngFor="let j of jenis" (click)="jenisSelected($event)">
       {{ j.name }}
     </button>
   </div>
@@ -88,9 +86,8 @@
   <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
     Pilihan Kain Untukmu <br /> <span class="text-sm">Jumlah pilih maksimal {{ maxSelectKain }} barang.</span>
   </div>
-  <div class="btn-group m-3 inline-grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-    <button class="btn btn-outline-gray" btnCheckbox *ngFor="let k of kain" [class.active]="k.selected"
-      [ngModel]="k.selected" (ngModelChange)="kainSelected($event, k)">
+  <div class="btn-group m-3 inline-grid gap-3 {{ (kain.length >= 4 ? 'lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2' : (kain.length >= 3 ? 'md:grid-cols-3 sm:grid-cols-2' : (kain.length >= 2 ? 'sm:grid-cols-2' : '' ) )) }} grid-cols-1">
+    <button class="btn btn-outline-gray" btnCheckbox *ngFor="let k of kain" [class.active]="k.selected" [ngModel]="k.selected" (ngModelChange)="kainSelected($event, k)">
       {{ k.name }}
     </button>
   </div>
