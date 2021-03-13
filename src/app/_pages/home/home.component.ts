@@ -105,7 +105,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else {
       this.tipe_id_checkbox = this.tipe_id_checkbox.filter(x => x !== this.tipe[idx].id);
     }
-    console.log(this.tipe_id_checkbox);
   }
 
   kainSelected($event, kain): void {
