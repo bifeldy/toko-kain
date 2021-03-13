@@ -11,6 +11,7 @@ import { AdminService } from '../../_shared/services/admin.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
   phoneNumber = '6287871188899';
+  maxSelectKain = 10;
 
   submitted = false;
 
@@ -26,8 +27,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   kain_name = [];
   kain = [];
-
-  maxSelectKain = 10;
 
   subsKategoriGet = null;
   subsJenisGet = null;
