@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    window.analytics.page('Home');
     if (this.gs.isBrowser) {
       this.getKategori();
       this.getJenis();
@@ -172,6 +173,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getKain(tipeId, kategoriId, jenisId): void {
     this.submitted = true;
+    window.analytics.track('Search Recommendation');
     this.subsKainGet = this.a.getKain(tipeId, kategoriId, jenisId).subscribe({
       next: (res: any) => {
         this.gs.log('[KAIN_GET_SUCCESS]', res);

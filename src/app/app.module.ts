@@ -18,6 +18,10 @@ import { AppComponent } from './app.component';
 // import { AdminComponent } from './_pages/admin/admin.component';
 import { HomeComponent } from './_pages/home/home.component';
 
+declare global {
+  interface Window { analytics: any; }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
