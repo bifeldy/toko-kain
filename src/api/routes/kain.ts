@@ -12,6 +12,7 @@ import { Tipe } from '../entities/Tipe';
 
 // Middleware
 import auth from '../middlewares/auth';
+import { Log } from '../entities/Log';
 
 const router = Router();
 
@@ -34,6 +35,19 @@ router.get('/', async (req: UserRequest, res: Response, next: NextFunction) => {
   }
   kainRepoQuery = kainRepoQuery.orderBy('kain.name', 'ASC');
   const [kains, count] = await kainRepoQuery.getManyAndCount();
+  const logRepo = getRepository(Log);
+  const log = new Log();
+  log.url = req.originalUrl;
+  if (req.query.jenis) {
+    log.jenis = req.query.jenis;
+  }
+  if (req.query.kategori) {
+    log.kategori = req.query.kategori;
+  }
+  if (req.query.tipe) {
+    log.tipe = req.query.tipe;
+  }
+  logRepo.save(log);
   return res.status(200).json({
     info: `😅 200 - Kain API :: List All 🤣`,
     count,
