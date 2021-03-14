@@ -11,6 +11,7 @@ import auth from '../middlewares/auth';
 import jenisRouter from './jenis';
 import kainRouter from './kain';
 import kategoriRouter from './kategori';
+import logRouter from './log';
 import tipeRouter from './tipe';
 
 const router = Router();
@@ -24,6 +25,7 @@ router.get('/', (req: Request, res: Response) => {
 router.use('/jenis', jenisRouter);
 router.use('/kain', kainRouter);
 router.use('/kategori', kategoriRouter);
+router.use('/log', logRouter);
 router.use('/tipe', tipeRouter);
 
 // POST `/api/login`
