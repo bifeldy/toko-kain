@@ -64,10 +64,10 @@
     Pilih Tipe
   </div>
   <div class="mb-3 inline-grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 text-left">
-    <div class="custom-control custom-checkbox m-3 d-inline text-xl" *ngFor="let t of tipe">
-      <input class="custom-control-input" type="radio" id="tipe_{{ t.id }}" [value]="t.id" [(ngModel)]="tipe_id_radio" (change)="tipeSelectedRadio($event, t)" />
-      <!-- <input class="custom-control-input" type="checkbox" name="{{ t.name }}" id="tipe_{{ t.id }}" (change)="tipeSelectedCheckbox($event, t)" /> -->
-      <label class="custom-control-label d-inline" for="tipe_{{ t.id }}">
+    <div class="m-3 text-xl" *ngFor="let t of tipe">
+      <input class="mt-2 pl-3" type="radio" id="tipe_{{ t.id }}" [value]="t.id" [(ngModel)]="tipe_id_radio" (change)="tipeSelectedRadio($event, t)" />
+      <!-- <input class="mt-2 pl-3" type="checkbox" name="{{ t.name }}" id="tipe_{{ t.id }}" (change)="tipeSelectedCheckbox($event, t)" /> -->
+      <label class="ml-5" for="tipe_{{ t.id }}">
         {{ t.name }}
       </label>
     </div>
@@ -86,7 +86,7 @@
   <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
     Pilihan Kain Untukmu <br /> <span class="text-sm">Jumlah pilih maksimal {{ maxSelectKain }} barang.</span>
   </div>
-  <div class="btn-group m-3 inline-grid gap-3 {{ kain.length >= 4 ? 'lg:grid-cols-4' : '' }} {{ kain.length >= 3 ? 'md:grid-cols-3' : '' }} {{ kain.length >= 2 ? 'sm:grid-cols-2' : '' }} grid-cols-1">
+  <div class="btn-group m-3 inline-grid gap-3 {{ kain.length >= 4 ? 'lg:grid-cols-4' : '' }} {{ kain.length >= 3 ? 'md:grid-cols-3' : '' }} {{ kain.length >= 2 ? 'grid-cols-2' : 'grid-cols-1' }}">
     <button class="btn btn-outline-gray" btnCheckbox *ngFor="let k of kain" [class.active]="k.selected" [ngModel]="k.selected" (ngModelChange)="kainSelected($event, k)">
       {{ k.name }}
     </button>

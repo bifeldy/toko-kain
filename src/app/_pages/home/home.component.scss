@@ -34,3 +34,12 @@
   height: 200px;
   min-width: 100%;
 }
+
+input[type=radio],
+input[type=checkbox] {
+  float: left;
+}
+
+label {
+  display: block;
+}
