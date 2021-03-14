@@ -48,7 +48,7 @@
   </div>
 </div>
 
-<div class="pt-5 text-center">
+<div class="py-5 text-center">
   <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
     Pilih Kategori
   </div>
@@ -59,7 +59,7 @@
   </div>
 </div>
 
-<div class="pt-5 text-center container" *ngIf="tipe.length > 0">
+<div class="text-center container {{ (tipe_id_checkbox.length > 0 || tipe_id_radio) ? '' : 'pb-5' }}" *ngIf="tipe.length > 0">
   <div class="mt-3 font-bold text-xl md:text-2xl lg:text-3xl">
     Pilih Tipe
   </div>
@@ -82,7 +82,7 @@
 
 <div class="pb-3 text-center" #end></div>
 
-<div class="p-5 text-center bg-light" *ngIf="kain.length > 0">
+<div class="text-center bg-light pt-5 {{ (kain_name.length > 0) ? '' : 'pb-5' }}" *ngIf="kain.length > 0">
   <div class="m-3 font-bold text-xl md:text-2xl lg:text-3xl">
     Pilihan Kain Untukmu <br /> <span class="text-sm">Jumlah pilih maksimal {{ maxSelectKain }} barang.</span>
   </div>
@@ -103,6 +103,8 @@
     </span>
   </button>
 </div>
+
+<hr *ngIf="kain.length > 0" />
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center bg-light px-4 py-4 xl:px-60">
   <div>
