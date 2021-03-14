@@ -44,8 +44,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.analytics.page('Home');
     if (this.gs.isBrowser) {
+      window.analytics.page('Home');
       this.getKategori();
       this.getJenis();
     }
