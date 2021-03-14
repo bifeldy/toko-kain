@@ -15,13 +15,13 @@ import { SharedBootstrapModule } from './_shared/helpers/shared-bootstrap.module
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { AdminComponent } from './_pages/admin/admin.component';
+// import { AdminComponent } from './_pages/admin/admin.component';
 import { HomeComponent } from './_pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
+    // AdminComponent,
     HomeComponent
   ],
   imports: [
