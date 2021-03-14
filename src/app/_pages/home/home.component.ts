@@ -92,10 +92,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   tipeSelectedRadio($event, tipe): void {
-    //
+    this.kain = [];
+    this.kain_name = [];
   }
 
   tipeSelectedCheckbox($event, tipe): void {
+    this.kain = [];
+    this.kain_name = [];
     const idx = this.tipe.findIndex(t => t.id === tipe.id);
     this.tipe[idx].selected = !this.tipe[idx].selected;
     if (this.tipe[idx].selected) {
