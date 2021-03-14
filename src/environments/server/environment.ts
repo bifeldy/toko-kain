@@ -10,17 +10,17 @@ import { Tipe } from '../../api/entities/Tipe';
 import { User } from '../../api/entities/User';
 
 export const environment = {
-  production: false,
+  production: true,
   siteName: 'Toko Kain',
   jwtSecretKey: 'Toko-Kain-Dev',
   tokenName: 'toko-kain_token',
   appPort: 4000,
   dbType: 'postgres',
-  dbHost: 'localhost',
+  dbHost: 'postgres',
   dbPort: 5432,
   dbName: 'tokokain_demo_dev',
   dbUsername: 'postgres',
-  dbPassword: 'postgres',
+  dbPassword: 'tokokain!',
   dbEntities: [
     Jenis,
     Kain,
