@@ -48,7 +48,7 @@
     Pilih Gender
   </div>
   <div class="btn-group m-3" btnRadioGroup [(ngModel)]="kategori_id">
-    <button class="mx-2 btn btn-outline-gray same-button" btnCheckbox btnRadio="{{ k.id }}" *ngFor="let k of kategori" (click)="kategoriSelected($event)">
+    <button class="mx-2 btn btn-outline-gray same-button" btnRadio btnRadio="{{ k.id }}" *ngFor="let k of kategori" (click)="kategoriSelected($event)">
       {{ k.name }}
     </button>
   </div>
@@ -59,7 +59,7 @@
     Pilih Kategori
   </div>
   <div class="btn-group m-3" btnRadioGroup [(ngModel)]="jenis_id">
-    <button class="mx-2 btn btn-outline-gray same-button" btnCheckbox btnRadio="{{ j.id }}" *ngFor="let j of jenis" (click)="jenisSelected($event)">
+    <button class="mx-2 btn btn-outline-gray same-button" btnRadio btnRadio="{{ j.id }}" *ngFor="let j of jenis" (click)="jenisSelected($event)">
       {{ j.name }}
     </button>
   </div>
@@ -69,18 +69,21 @@
   <div class="mt-3 font-bold text-4xl">
     Pilih Tipe
   </div>
-  <div class="mb-3 inline-grid text-left {{ tipe.length >= 3 ? 'md:grid-cols-3' : '' }} {{ tipe.length >= 2 ? 'grid-cols-2' : 'grid-cols-1' }}">
-    <div class="m-3 text-xl" *ngFor="let t of tipe">
-      <input class="mt-2 pl-3" type="radio" id="tipe_{{ t.id }}" [value]="t.id" [(ngModel)]="tipe_id_radio" (change)="tipeSelectedRadio($event, t)" />
+  <!-- <div class="mb-3 inline-grid text-left {{ tipe.length >= 3 ? 'md:grid-cols-3' : '' }} {{ tipe.length >= 2 ? 'grid-cols-2' : 'grid-cols-1' }}"> -->
+    <!-- <div class="m-3 text-xl" *ngFor="let t of tipe"> -->
+      <!-- <input class="mt-2 pl-3" type="radio" id="tipe_{{ t.id }}" [value]="t.id" [(ngModel)]="tipe_id_radio" (change)="tipeSelectedRadio($event, t)" /> -->
       <!-- <input class="mt-2 pl-3" type="checkbox" name="{{ t.name }}" id="tipe_{{ t.id }}" (change)="tipeSelectedCheckbox($event, t)" /> -->
-      <label class="ml-5" for="tipe_{{ t.id }}">
-        {{ t.name }}
-      </label>
-    </div>
+      <!-- <label class="ml-5" for="tipe_{{ t.id }}">{{ t.name }}</label> -->
+    <!-- </div> -->
+  <!-- </div> -->
+  <div class="btn-group m-3 inline-grid gap-3 {{ tipe.length >= 4 ? 'lg:grid-cols-4' : '' }} {{ tipe.length >= 3 ? 'md:grid-cols-3' : '' }} {{ tipe.length >= 2 ? 'grid-cols-2' : 'grid-cols-1' }}" btnRadioGroup [(ngModel)]="tipe_id_radio">
+    <button class="mx-2 btn btn-outline-gray" btnRadio btnRadio="{{ t.id }}" *ngFor="let t of tipe" (click)="tipeSelectedRadio($event, t)">
+      {{ t.name }}
+    </button>
   </div>
 </div>
 
-<div class="pb-5 text-center" *ngIf="tipe_id_checkbox.length > 0 || tipe_id_radio">
+<div class="pt-3 pb-5 text-center" *ngIf="tipe_id_checkbox.length > 0 || tipe_id_radio">
   <button class="btn btn-lg btn-success p-3" (click)="requestSample(end)" [disabled]="submitted">
     Request Sample
   </button>
@@ -110,7 +113,7 @@
   </button>
 </div>
 
-<hr *ngIf="kain.length > 0" />
+<hr />
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center bg-light px-4 py-4 xl:px-60">
   <div>
